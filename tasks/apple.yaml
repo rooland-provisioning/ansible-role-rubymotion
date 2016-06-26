@@ -1,0 +1,9 @@
+---
+- name: Please install Xcode and iOS Simulator
+  shell:  open 'https://itunes.apple.com/us/app/xcode/id497799835?mt=12'
+  args:
+    creates:  /Applications/Xcode.app
+
+- name: Waiting for iOS Simulator to be installed
+  wait_for:
+    path: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk

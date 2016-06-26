@@ -1,0 +1,19 @@
+galaxy_info:
+  author: Mailo Svetel
+  company: Rooland provisioning
+  description: Set RubyMotion development up. Please note, that this is unofficial role.
+  galaxy_tags:
+    - android
+    - ios
+    - osx
+    - ruby
+    - rubymotion
+  license: MIT
+  min_ansible_version: 2.0
+  platforms:
+    - name: Darwin
+      versions:
+        - El Capitan
+        - Sierra
+
+dependencies: []

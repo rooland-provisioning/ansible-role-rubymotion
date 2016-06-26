@@ -1,0 +1,19 @@
+---
+- name: Open download page
+  shell:  open 'http://www.rubymotion.com/download/'
+  args:
+    creates:  ~/Downloads/RubyMotion Installer.app
+
+- name: Waiting for RubyMotion installer to be downloaded
+  wait_for:
+    path:   ~/Downloads/RubyMotion Installer.app
+    state:  present
+
+- name:     Start the installer
+  shell:    open ~/Downloads/RubyMotion\ Installer.app
+  args:
+    creates:  /usr/local/bin/motion
+
+- name:       Platform-specific stuff
+  include:    "{{ item.platform_name }}.yaml"
+  with_items: "{{ rubymotion.platforms }}"
