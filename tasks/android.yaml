@@ -1,0 +1,19 @@
+---
+- name: Configure paths
+  lineinfile:
+    dest:   ~/.profile
+    line:   "{{ line_item.content }}"
+    state:  present
+    regexp: "{{ line_item.regexp }}"
+  loop_control:
+    loop_var: line_item
+  with_items:
+    - content:  "export RUBYMOTION_ANDROID_NDK={{ ansible_env['HOME'] }}/.rubymotion-android/ndk"
+      regexp:   ^export RUBYMOTION_ANDROID_NDK=
+    - content:  "export RUBYMOTION_ANDROID_SDK={{ ansible_env['HOME'] }}/.rubymotion-android/sdk"
+      regexp:   ^export RUBYMOTION_ANDROID_SDK=
+
+- name:   Run RubyMotion's Android Setup
+  shell:  motion android-setup
+  args:
+    creates:  ~/.rubymotion-android/
