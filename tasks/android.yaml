@@ -17,3 +17,13 @@
   shell:  motion android-setup
   args:
     creates:  ~/.rubymotion-android/
+
+- name: Install emulation hardware acceleration
+  homebrew_cask:
+    name:   intel-haxm
+    state:  present
+
+- name: Create Android Virtual Device
+  shell:  echo no | ~/.rubymotion-android/sdk/tools/android create avd --target android-23 --name Devdroid --tag android-tv
+  args:
+    creates:  ~/.android/avd/Devdroid.ini
